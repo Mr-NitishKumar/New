@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Happy New Year 2026 Wisher 🎉</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background: linear-gradient(45deg, #000428, #004e92, #ff7e5f, #feb47b);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            color: white; 
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        @keyframes gradientShift {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1 { 
+            font-size: clamp(2.5em, 8vw, 4em); 
+            margin: 30px 0; 
+            text-shadow: 0 0 40px #ffd700; 
+            animation: glow 2s infinite; 
+        }
+        @keyframes glow { 
+            0%,100%{text-shadow:0 0 20px #ffd700;} 
+            50%{text-shadow:0 0 40px #ffd700,0 0 60px #ff1493;} 
+        }
+        #senderForm { display: block; }
+        #greeting { display: none; }
+        input { 
+            padding: 20px; font-size: 20px; border: 3px solid #ffd700; 
+            border-radius: 30px; width: 350px; max-width: 90vw; 
+            margin: 20px 0; text-align: center; background: rgba(255,255,255,0.1); 
+            color: white; font-weight: bold; transition: all 0.3s;
+        }
+        input:focus { 
+            outline: none; box-shadow: 0 0 30px #ffd700; transform: scale(1.02);
+            background: rgba(255,255,255,0.2);
+        }
+        button { 
+            padding: 20px 50px; font-size: 22px; 
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ff1493);
+            color: #000; border: none; border-radius: 30px; cursor: pointer; 
+            margin: 20px; font-weight: bold; transition: all 0.4s;
+        }
+        button:hover { 
+            transform: scale(1.1) rotate(3deg); 
+            box-shadow: 0 20px 50px rgba(255,215,0,0.6); 
+        }
+        .share-section { 
+            background: rgba(0,0,0,0.5); padding: 30px; 
+            border-radius: 20px; margin: 30px 0; 
+            backdrop-filter: blur(10px); border: 2px solid #ffd700;
+        }
+        .share-link { 
+            background: #25D366; color: white; padding: 15px 25px; 
+            text-decoration: none; border-radius: 25px; font-size: 18px;
+            display: inline-block; margin: 10px; font-weight: bold;
+        }
+        .copy-btn { background: #4CAF50; color: white; padding: 15px 30px; }
+        
+        /* Fireworks */
+        #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .particles { position: fixed; pointer-events: none; z-index: 100; }
+        
+        /* Wish Display */
+        .wish-display { 
+            font-size: clamp(1.8em, 5vw, 3em); 
+            margin: 40px 0; min-height: 200px; 
+            animation: celebrate 2s ease-in-out infinite; 
+        }
+        @keyframes celebrate {
+            0%,100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(2deg); }
+            75% { transform: scale(1.05) rotate(-2deg); }
+        }
+        .sender-name { 
+            color: #ff1493; font-size: 1.4em; 
+            text-shadow: 0 0 25px #ff1493; font-weight: bold; 
+        }
+        
+        @media (max-width: 600px) { 
+            input { width: 90vw; margin: 15px 0; } 
+            button { padding: 18px 40px; font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fireworksCanvas"></canvas>
+    
+    <div class="container">
+        <h1>🎉 Happy New Year 2026! 🎊</h1>
+        
+        <!-- Sender Form -->
+        <div id="senderForm">
+            <input id="senderName" placeholder="👤 Apna naam likho..." maxlength="30" required>
+            <br>
+            <button onclick="generateLink()">🚀 Magic Link Banao & Share Karo!</button>
+        </div>
+        
+        <!-- Share Section -->
+        <div id="shareSection" class="share-section" style="display: none;">
+            <h2 style="margin-bottom: 20px; color: #ffd700;">✨ Yeh Link Copy Karo:</h2>
+            <div id="shareLink" class="share-link" onclick="copyLink()"></div>
+            <a id="whatsappBtn" class="share-link">📱 WhatsApp Pe Bhejo</a>
+            <br><button class="copy-btn" onclick="copyLink()">📋 Copy Link</button>
+        </div>
+        
+        <!-- Receiver Greeting -->
+        <div id="greeting">
+            <div class="wish-display" id="randomWish"></div>
+            <div class="sender-name" id="senderDisplay"></div>
+            <button onclick="generateNewWish()" style="margin-top: 30px;">
+                🔄 Naya Wish Dekho
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 Random New Year Wishes (Hindi/English mix)
+        const wishes = [
+            "नया साल मुबारक हो! नई उम्मीदें, नई खुशियाँ लाए!",
+            "Happy New Year! नया साल आपकी जिंदगी को रंगीन बनाए!",
+            "शुभ नय वर्ष! सफलता और समृद्धि की बधाई!",
+            "नया साल नई शुरुआत! ढेर सारी खुशियाँ!",
+            "🎉 2026 आपका सबसे शानदार साल बने!",
+            "नया साल खुशियों भरा हो! नई ऊँचाइयों को छुओ!",
+            "Happy New Year! सपने सच हों, इच्छाएँ पूरी हों!",
+            "शुभकामनाएँ! नया साल धमाकेदार हो!",
+            "नया साल आपकी जिंदगी में खुशियों की बौछार करे!",
+            "2026 आपका साल है! जीत का जश्न मनाओ!",
+            "नय वर्ष की हार्दिक शुभकामनाएँ! उड़ान भरो!",
+            "Happy New Year! हर दिन खुशियों से भरा हो!"
+        ];
+
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Fireworks Animation
+        let particles = [];
+        function createFirework(x, y) {
+            for(let i = 0; i < 40; i++) {
+                particles.push({
+                    x: x || Math.random() * canvas.width,
+                    y: y || Math.random() * canvas.height * 0.6,
+                    vx: (Math.random() - 0.5) * 15,
+                    vy: (Math.random() - 0.5) * 15,
+                    color: `hsl(${20 + Math.random()*60}, 100%, ${50 + Math.random()*30}%)`,
+                    life: 120,
+                    maxLife: 120
+                });
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.15;
+                p.life--;
+                
+                const alpha = p.life / p.maxLife;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5 * alpha, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                return p.life > 0;
+            });
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        // Continuous fireworks for greeting
+        function startFireworks() {
+            setInterval(() => {
+                createFirework();
+            }, 600);
+        }
+
+        // Generate Random Wish
+        function getRandomWish() {
+            return wishes[Math.floor(Math.random() * wishes.length)];
+        }
+
+        // Main Functions
+        function generateLink() {
+            const senderName = document.getElementById('senderName').value.trim();
+            if (!senderName) {
+                alert('👤 Pehle apna naam likho!');
+                return;
+            }
+            
+            const uniqueId = 'wish_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            const shareUrl = `${window.location.href}?wish=${uniqueId}&sender=${encodeURIComponent(senderName)}`;
+            
+            // Store in localStorage
+            let wishesData = JSON.parse(localStorage.getItem('newyear_wishes')) || [];
+            wishesData.push({
+                id: uniqueId,
+                sender: senderName,
+                timestamp: new Date().toISOString(),
+                views: 0
+            });
+            localStorage.setItem('newyear_wishes', JSON.stringify(wishesData));
+            
+            // Show share section
+            document.getElementById('shareLink').textContent = shareUrl;
+            document.getElementById('shareLink').href = shareUrl;
+            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${encodeURIComponent(`${senderName} se Happy New Year wish! 🎉
+${shareUrl}`)}`;
+            document.getElementById('senderForm').style.display = 'none';
+            document.getElementById('shareSection').style.display = 'block';
+            
+            // Fireworks celebration
+            createFirework(canvas.width / 2, canvas.height * 0.3);
+        }
+
+        function copyLink() {
+            const link = document.getElementById('shareLink').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = original, 2000);
+            });
+        }
+
+        function generateNewWish() {
+            const senderName = document.getElementById('senderDisplay').textContent.replace('के तरफ से ❤️', '');
+            document.getElementById('randomWish').textContent = getRandomWish();
+            createFirework(canvas.width / 2, canvas.height * 0.4);
+        }
+
+        function showGreeting() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const wishId = urlParams.get('wish');
+            const senderName = urlParams.get('sender');
+            
+            if (wishId && senderName) {
+                // Update view count
+                let wishesData = JSON.parse(localStorage.getItem('newyear_wishes')) || [];
+                const wish = wishesData.find(w => w.id === wishId);
+                if (wish) {
+                    wish.views = (wish.views || 0) + 1;
+                    localStorage.setItem('newyear_wishes', JSON.stringify(wishesData));
+                }
+                
+                document.getElementById('senderForm').style.display = 'none';
+                document.getElementById('shareSection').style.display = 'none';
+                document.getElementById('greeting').style.display = 'block';
+                document.getElementById('randomWish').textContent = getRandomWish();
+                document.getElementById('senderDisplay').textContent = `${senderName} के तरफ से ❤️`;
+                
+                startFireworks();
+                setInterval(createFirework, 1000);
+            }
+        }
+
+        // Enter key support
+        document.getElementById('senderName').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') generateLink();
+        });
+
+        // Check URL on load
+        showGreeting();
+
+        // Initial fireworks
+        setTimeout(() => createFirework(canvas.width / 2, canvas.height / 2), 1000);
+    </script>
+</body>
+  </html>
