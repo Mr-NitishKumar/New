@@ -1,234 +1,352 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎉 Happy New Year 2026 Wisher 🎉</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
- font-family:'Segoe UI',Tahoma,sans-serif;
- background:linear-gradient(45deg,#000428,#004e92,#ff7e5f,#feb47b);
- background-size:400% 400%;
- animation:gradientShift 10s ease infinite;
- color:white;
- min-height:100vh;
- overflow-x:hidden;
- text-align:center;
-}
-@keyframes gradientShift{
- 0%,100%{background-position:0% 50%}
- 50%{background-position:100% 50%}
-}
-.container{max-width:600px;margin:auto;padding:20px}
-h1{
- font-size:clamp(2.5em,8vw,4em);
- margin:30px 0;
- text-shadow:0 0 40px #ffd700;
- animation:glow 2s infinite;
-}
-@keyframes glow{
- 0%,100%{text-shadow:0 0 20px #ffd700}
- 50%{text-shadow:0 0 40px #ffd700,0 0 60px #ff1493}
-}
-#countdown{
- font-size:1.8em;
- color:#ffd700;
- margin:20px 0;
- font-weight:bold;
- text-shadow:0 0 20px #ffd700;
- padding:15px;
- background:rgba(0,0,0,0.3);
- border-radius:15px
-}
-input{
- padding:18px;
- font-size:18px;
- border:3px solid #ffd700;
- border-radius:30px;
- width:350px;
- max-width:85vw;
- margin:12px 0;
- text-align:center;
- background:rgba(255,255,255,0.1);
- color:white;
- font-weight:bold
-}
-input:focus{
- outline:none;
- box-shadow:0 0 25px #ffd700
-}
-button{
- padding:18px 40px;
- font-size:18px;
- background:linear-gradient(45deg,#ffd700,#ffed4e,#ff1493);
- color:#000;
- border:none;
- border-radius:30px;
- cursor:pointer;
- margin:15px;
- font-weight:bold;
- transition:0.3s
-}
-button:hover{
- transform:scale(1.05)
-}
-.share-section{
- background:rgba(0,0,0,0.6);
- padding:25px;
- border-radius:20px;
- margin:25px 0;
- display:none
-}
-.share-link{
- background:#25D366;
- color:white;
- padding:12px 20px;
- text-decoration:none;
- border-radius:25px;
- display:inline-block;
- margin:8px;
- font-weight:bold;
- cursor:pointer;
- word-break:break-all
-}
-#wish{font-size:2em;margin:30px 0;color:#ffed4e}
-#sender{color:#ff1493;font-size:1.2em}
-canvas{
- position:fixed;
- top:0;left:0;
- width:100%;height:100%;
- z-index:-1
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Happy New Year 2026 Wisher 🎉</title>
+    <style>
+        /* [Same optimized CSS - keeping it compact] */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #000428, #004e92, #ff7e5f, #feb47b);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            color: white; 
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @keyframes glow { 0%,100%{text-shadow:0 0 20px #ffd700;} 50%{text-shadow:0 0 40px #ffd700,0 0 60px #ff1493;} }
+        @keyframes celebrate { 0%,100% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.05) rotate(2deg); } 75% { transform: scale(1.05) rotate(-2deg); } }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1 { font-size: clamp(2.5em, 8vw, 4em); margin: 30px 0; text-shadow: 0 0 40px #ffd700; animation: glow 2s infinite; }
+        #countdown { font-size: 1.8em; color: #ffd700; margin: 20px 0; font-weight: bold; text-shadow: 0 0 20px #ffd700; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 15px; }
+        #senderForm { display: block; } #greeting { display: none; }
+        input { padding: 18px; font-size: 18px; border: 3px solid #ffd700; border-radius: 30px; width: 350px; max-width: 85vw; margin: 12px 0; text-align: center; background: rgba(255,255,255,0.1); color: white; font-weight: bold; transition: all 0.3s ease; }
+        input::placeholder { color: rgba(255,255,255,0.7); }
+        input:focus { outline: none; box-shadow: 0 0 30px #ffd700; transform: scale(1.02); background: rgba(255,255,255,0.2); }
+        button { padding: 18px 40px; font-size: 18px; background: linear-gradient(45deg, #ffd700, #ffed4e, #ff1493); color: #000; border: none; border-radius: 30px; cursor: pointer; margin: 15px; font-weight: bold; transition: all 0.4s ease; }
+        button:hover { transform: scale(1.08) rotate(2deg); box-shadow: 0 15px 40px rgba(255,215,0,0.6); }
+        .share-section { background: rgba(0,0,0,0.6); padding: 25px; border-radius: 20px; margin: 25px 0; backdrop-filter: blur(10px); border: 2px solid #ffd700; display: none; }
+        .share-link { background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 25px; font-size: 16px; display: inline-block; margin: 8px; font-weight: bold; cursor: pointer; word-break: break-all; }
+        .copy-btn { background: #4CAF50; padding: 12px 25px; }
+        #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .wish-display { font-size: clamp(1.5em, 5vw, 2.8em); margin: 35px 0; min-height: 180px; animation: celebrate 2s ease-in-out infinite; color: #ffed4e; }
+        .sender-name { color: #ff1493; font-size: 1.3em; text-shadow: 0 0 25px #ff1493; font-weight: bold; margin: 15px 0; }
+        .forward-section { margin-top: 35px; padding-top: 25px; border-top: 2px solid #ffd700; display: none; }
+        @media (max-width: 600px) { input { width: 90vw; } button { padding: 15px 30px; font-size: 16px; } }
+    </style>
 </head>
-
 <body>
+    <canvas id="fireworksCanvas"></canvas>
+    <div class="container">
+        <h1>🎉 Happy New Year 2026! 🎊</h1>
+        <div id="countdown"><span id="days">0</span>d : <span id="hours">0</span>h : <span id="minutes">0</span>m : <span id="seconds">0</span>s</div>
+        <div id="senderForm">
+            <input id="senderName" placeholder="👤 Apna naam likho..." maxlength="30" required>
+            <button onclick="generateLink()">🚀 Magic Link Banao & Share Karo!</button>
+        </div>
+        <div id="shareSection" class="share-section">
+            <h2 style="margin-bottom: 15px; color: #ffd700;">✨ Yeh Link Copy Karo:</h2>
+            <div id="shareLink" class="share-link" onclick="copyLink()"></div>
+            <br><a id="whatsappBtn" class="share-link" style="background: #25D366;">📱 WhatsApp Pe Bhejo</a>
+            <button class="copy-btn" onclick="copyLink()">📋 Copy Link</button>
+        </div>
+        <div id="greeting">
+            <div class="wish-display" id="randomWish"></div>
+            <div class="sender-name" id="senderDisplay"></div>
+            <button onclick="generateNewWish()">🔄 Naya Wish Dekho</button>
+            <div class="forward-section" id="forwardSection">
+                <h3 style="margin-bottom: 15px;">🔗 Chain Ko Aage Badha!</h3>
+                <input id="nextSenderName" placeholder="👤 Tera naam likho..." maxlength="30">
+                <button onclick="passToNext()">✨ Apna Link Banao & Bhejo!</button>
+            </div>
+        </div>
+    </div>
 
-<canvas id="fireworksCanvas"></canvas>
+    <script>
+        // 🎉 FESTIVE LIVE MUSIC SYSTEM 🎉
+        class FestiveAudioManager {
+            constructor() {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                this.masterGain = this.audioContext.createGain();
+                this.masterGain.connect(this.audioContext.destination);
+                this.masterGain.gain.value = 0.45;
+                this.isPlaying = false;
+                this.bassDrumInterval = null;
+            }
 
-<div class="container">
-<h1>🎉 Happy New Year 2026 🎊</h1>
+            // 🎵 CELEBRATIVE CHORD PROGRESSION
+            createFestiveChord(notes, duration, volume = 0.35, delay = 0) {
+                const now = this.audioContext.currentTime + delay;
+                notes.forEach((note, index) => {
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    
+                    osc.type = index === 0 ? 'sawtooth' : 'sine'; // Bass is sawtooth for punch
+                    osc.frequency.value = note;
+                    
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(volume * (1 - index * 0.1), now + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + duration);
+                    
+                    osc.start(now);
+                    osc.stop(now + duration);
+                });
+            }
 
-<div id="countdown">
-<span id="days">0</span>d :
-<span id="hours">0</span>h :
-<span id="minutes">0</span>m :
-<span id="seconds">0</span>s
-</div>
+            // 🥁 LIVE BASS DRUM BEAT (Festive rhythm)
+            playBassDrum() {
+                const now = this.audioContext.currentTime;
+                const osc = this.audioContext.createOscillator();
+                const gain = this.audioContext.createGain();
+                
+                osc.connect(gain);
+                gain.connect(this.masterGain);
+                osc.frequency.setValueAtTime(80, now);
+                osc.frequency.exponentialRampToValueAtTime(40, now + 0.1);
+                osc.type = 'square';
+                
+                gain.gain.setValueAtTime(0.6, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                
+                osc.start(now);
+                osc.stop(now + 0.2);
+            }
 
-<div id="form">
-<input id="name" placeholder="👤 Apna naam likho" maxlength="30">
-<br>
-<button onclick="makeLink()">🚀 Magic Link Banao</button>
-</div>
+            // 🎊 FULL FESTIVE SUCCESS SOUND
+            playCelebration() {
+                // Layer 1: Major chord
+                this.createFestiveChord([523.25, 659.25, 783.99], 0.4); // C-E-G
+                // Layer 2: High sparkle
+                setTimeout(() => this.createFestiveChord([1046.5, 1318.5], 0.3, 0.25), 0.1);
+                // Layer 3: Bass punch
+                setTimeout(() => this.playBassDrum(), 0.05);
+            }
 
-<div class="share-section" id="share">
-<p>✨ Link Copy Karo:</p>
-<div id="link" class="share-link" onclick="copyLink()"></div>
-</div>
+            // 💥 Enhanced Firework with festive tail
+            playFireworkFestive() {
+                this.playFirework();
+                // 🎵 Festive sparkle tail
+                setTimeout(() => this.createFestiveChord([880, 1108.73], 0.3, 0.2), 0.1);
+            }
 
-<div id="wishBox" style="display:none">
-<div id="wish"></div>
-<div id="sender"></div>
-</div>
-</div>
+            playFirework() {
+                this.createFestiveChord([200 + Math.random()*800, 1000 + Math.random()*500], 0.25, 0.4);
+            }
 
-<script>
-/* ================= COUNTDOWN ================= */
-const ny = new Date(2026,0,1).getTime();
-setInterval(()=>{
- const now = Date.now();
- const d = ny - now;
- days.innerText = Math.max(0,Math.floor(d/(1000*60*60*24)));
- hours.innerText = Math.max(0,Math.floor(d%(1000*60*60*24)/(1000*60*60)));
- minutes.innerText = Math.max(0,Math.floor(d%(1000*60*60)/(1000*60)));
- seconds.innerText = Math.max(0,Math.floor(d%(1000*60)/1000));
-},1000);
+            // 🎶 CELEBRATIVE FESTIVE MELODY (New Year Party Mix)
+            playFestiveMelody() {
+                if (this.isPlaying) return;
+                this.isPlaying = true;
+                
+                const festiveMelody = [
+                    // 🎉 Intro Fanfare
+                    [523.25, 659.25, 783.99], 0.3,   // C-E-G (Bright!)
+                    [698.46, 880.00, 1046.50], 0.4,  // F-A-C (Majestic)
+                    [523.25, 659.25, 783.99], 0.3,   // C-E-G
+                    [392.00, 493.88, 587.33], 0.5,   // G-B-D (Warm)
+                    
+                    // 🥁 Drum break
+                    () => this.playBassDrum(),
+                    
+                    // 🎊 Climax
+                    [783.99, 987.77, 1174.66], 0.6,  // G-B-D (High energy)
+                    [1046.50], 1.0                   // C (Grand finale)
+                ];
 
-/* ================= LINK ================= */
-function makeLink(){
- const n = name.value.trim();
- if(n.length < 2){
-  alert("Please valid naam likho");
-  return;
- }
- const url = location.origin + location.pathname + "?from=" + encodeURIComponent(n);
- link.innerText = url;
- share.style.display = "block";
-}
+                let index = 0;
+                const playNext = () => {
+                    if (!this.isPlaying || index >= festiveMelody.length * 2) {
+                        index = 0; // Loop back
+                    }
+                    
+                    const item = festiveMelody[index % festiveMelody.length];
+                    if (typeof item === 'function') {
+                        item();
+                    } else {
+                        const [notes, duration, vol] = item;
+                        this.createFestiveChord(notes, duration, vol || 0.35);
+                    }
+                    
+                    index++;
+                    setTimeout(playNext, (typeof festiveMelody[index % festiveMelody.length] === 'number' ? 
+                        festiveMelody[index % festiveMelody.length] * 1000 : 800));
+                };
+                playNext();
+                
+                // 🥁 Continuous bass drum beat (party feel)
+                this.bassDrumInterval = setInterval(() => {
+                    if (this.isPlaying) this.playBassDrum();
+                }, 1200);
+            }
 
-/* ================= COPY ================= */
-function copyLink(){
- navigator.clipboard.writeText(link.innerText);
- alert("Link copied!");
-}
+            stop() {
+                this.isPlaying = false;
+                if (this.bassDrumInterval) {
+                    clearInterval(this.bassDrumInterval);
+                    this.bassDrumInterval = null;
+                }
+            }
 
-/* ================= WISH ================= */
-const wishes=[
- "🎉 Naya saal mubarak ho!",
- "✨ 2026 aapka best year ho!",
- "🎊 Khushiyo se bhara saal!",
- "🥳 Success aur happiness mile!",
- "🌟 Dreams pure ho!",
- "💖 Love & peace mile!"
-];
+            resume() {
+                if (this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+            }
+        }
 
-const q = new URLSearchParams(location.search);
-if(q.has("from")){
- form.style.display="none";
- wishBox.style.display="block";
- wish.innerText = wishes[Math.floor(Math.random()*wishes.length)];
- sender.innerText = q.get("from") + " ki taraf se ❤️";
-}
+        // 🎉 Initialize FESTIVE Audio System
+        const audio = new FestiveAudioManager();
 
-/* ================= IMPROVED FIREWORKS ================= */
-const canvas = document.getElementById("fireworksCanvas");
-const ctx = canvas.getContext("2d");
+        // [Same app state, countdown, fireworks code as before - keeping it compact]
+        let wishes = JSON.parse(localStorage.getItem('wishes')) || [];
+        let currentWishId = null;
+        const randomWishes = [
+            "नया साल मुबारक हो! नई उम्मीदें, नई खुशियाँ लाए!",
+            "Happy New Year! नया साल आपकी जिंदगी को रंगीन बनाए!",
+            "शुभ नय वर्ष! सफलता और समृद्धि की बधाई!",
+            "नया साल नई शुरुआत! ढेर सारी खुशियाँ!",
+            "🎉 2026 आपका सबसे शानदार साल बने!",
+            "नया साल खुशियों भरा हो! नई ऊँचाइयों को छुओ!",
+            "Happy New Year! सपने सच हों, इच्छाएँ पूरी हों!",
+            "शुभकामनाएँ! नया साल धमाकेदार हो!",
+            "नया साल आपकी जिंदगी में खुशियों की बौछार करे!",
+            "2026 आपका साल है! जीत का जश्न मनाओ!"
+        ];
 
-function resize(){
- canvas.width = innerWidth;
- canvas.height = innerHeight;
-}
-resize();
-addEventListener("resize",resize);
+        function startCountdown() {
+            function update() {
+                const newYear = new Date(2026, 0, 1).getTime();
+                const now = new Date().getTime();
+                const diff = newYear - now;
+                document.getElementById('days').textContent = Math.floor(diff / (1000*60*60*24));
+                document.getElementById('hours').textContent = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById('minutes').textContent = Math.floor((diff % (1000*60*60)) / (1000*60));
+                document.getElementById('seconds').textContent = Math.floor((diff % (1000*60)) / 1000);
+            }
+            update(); setInterval(update, 1000);
+        }
 
-let particles=[];
+        // Fireworks
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+        let particles = [];
+        
+        function createFirework(x, y) {
+            audio.playFireworkFestive();
+            for(let i = 0; i < 50; i++) {  // More particles for festive feel
+                particles.push({
+                    x: x || Math.random() * canvas.width,
+                    y: y || Math.random() * canvas.height * 0.6,
+                    vx: (Math.random() - 0.5) * 18,
+                    vy: (Math.random() - 0.5) * 18,
+                    color: `hsl(${Math.random()*60}, 100%, ${60 + Math.random()*30}%)`,
+                    life: 140, maxLife: 140
+                });
+            }
+        }
 
-function fire(){
- for(let i=0;i<40;i++){
-  particles.push({
-   x:Math.random()*canvas.width,
-   y:Math.random()*canvas.height*0.6,
-   vx:(Math.random()-0.5)*7,
-   vy:(Math.random()-0.5)*7,
-   life:100,
-   color:`hsl(${Math.random()*360},100%,60%)`
-  });
- }
-}
-setInterval(fire,1200);
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => {
+                p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.life--;
+                const alpha = p.life / p.maxLife;
+                ctx.save(); ctx.globalAlpha = alpha; ctx.fillStyle = p.color;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 6 * alpha, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+                return p.life > 0;
+            });
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
 
-function animate(){
- ctx.clearRect(0,0,canvas.width,canvas.height);
- particles = particles.filter(p=>{
-  p.x+=p.vx;
-  p.y+=p.vy;
-  p.vy+=0.05;
-  p.life--;
-  ctx.globalAlpha = p.life/100;
-  ctx.fillStyle = p.color;
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,3,0,Math.PI*2);
-  ctx.fill();
-  return p.life>0;
- });
- ctx.globalAlpha=1;
- requestAnimationFrame(animate);
-}
-animate();
-</script>
+        // Core functions with FESTIVE sounds
+        function generateUniqueId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+        function getRandomWish() { return randomWishes[Math.floor(Math.random() * randomWishes.length)]; }
 
+        function generateLink() {
+            const senderName = document.getElementById('senderName').value.trim();
+            if (!senderName) { alert('👤 Pehle apna naam likho!'); return; }
+            const uniqueId = generateUniqueId();
+            wishes.push({id: uniqueId, sender: senderName, timestamp: new Date().toISOString(), views: 0});
+            localStorage.setItem('wishes', JSON.stringify(wishes));
+            audio.playCelebration();
+            const shareUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(senderName)}&id=${uniqueId}`;
+            document.getElementById('shareLink').textContent = shareUrl;
+            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${encodeURIComponent(`${senderName} se Happy New Year wish! 🎉
+${shareUrl}`)}`;
+            document.getElementById('senderForm').style.display = 'none';
+            document.getElementById('shareSection').style.display = 'block';
+            createFirework(canvas.width / 2, canvas.height * 0.3);
+        }
+
+        function copyLink() {
+            const link = document.getElementById('shareLink').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                audio.playCelebration();
+                setTimeout(() => btn.textContent = original, 1500);
+            });
+        }
+
+        function generateNewWish() {
+            document.getElementById('randomWish').textContent = getRandomWish();
+            audio.playCelebration();
+            createFirework(canvas.width / 2, canvas.height * 0.4);
+        }
+
+        function passToNext() {
+            const nextName = document.getElementById('nextSenderName').value.trim();
+            if (!nextName) { alert('👤 Apna naam likho!'); return; }
+            const newId = generateUniqueId();
+            wishes.push({id: newId, sender: nextName, timestamp: new Date().toISOString(), views: 0});
+            localStorage.setItem('wishes', JSON.stringify(wishes));
+            audio.playCelebration();
+            const newUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(nextName)}&id=${newId}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(`${nextName} se Happy New Year! 🎉
+${newUrl}`)}`, '_blank');
+            document.getElementById('nextSenderName').value = '';
+            createFirework(canvas.width / 2, canvas.height * 0.3);
+        }
+
+        // URL handling
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('sender')) {
+            const senderName = urlParams.get('sender');
+            const wishId = urlParams.get('id');
+            currentWishId = wishId;
+            const wish = wishes.find(w => w.id === wishId);
+            if (wish) { wish.views = (wish.views || 0) + 1; localStorage.setItem('wishes', JSON.stringify(wishes)); }
+            document.getElementById('senderForm').style.display = 'none';
+            document.getElementById('shareSection').style.display = 'none';
+            document.getElementById('greeting').style.display = 'block';
+            document.getElementById('forwardSection').style.display = 'block';
+            document.getElementById('randomWish').textContent = getRandomWish();
+            document.getElementById('senderDisplay').textContent = `${senderName} के तरफ से ❤️`;
+            audio.playFestiveMelody();
+            setInterval(() => createFirework(), 1000); // More frequent fireworks
+        }
+
+        // Initialize FESTIVE MODE
+        startCountdown();
+        audio.playFestiveMelody(); // 🎉 PARTY STARTS IMMEDIATELY!
+        
+        document.addEventListener('click', () => audio.resume());
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (document.getElementById('senderForm').style.display !== 'none') generateLink();
+                else if (document.getElementById('forwardSection').style.display !== 'none') passToNext();
+            }
+        });
+    </script>
 </body>
-</html>
+ </html>
