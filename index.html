@@ -1,353 +1,234 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Happy New Year 2026 Wisher 🎉</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: linear-gradient(45deg, #000428, #004e92, #ff7e5f, #feb47b);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-            color: white; 
-            min-height: 100vh;
-            overflow-x: hidden;
-            text-align: center;
-        }
-        @keyframes gradientShift {
-            0%,100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        h1 { 
-            font-size: clamp(2.5em, 8vw, 4em); 
-            margin: 30px 0; 
-            text-shadow: 0 0 40px #ffd700; 
-            animation: glow 2s infinite; 
-        }
-        @keyframes glow { 
-            0%,100%{text-shadow:0 0 20px #ffd700;} 
-            50%{text-shadow:0 0 40px #ffd700,0 0 60px #ff1493;} 
-        }
-        #countdown { 
-            font-size: 1.8em; color: #ffd700; margin: 20px 0; font-weight: bold; 
-            text-shadow: 0 0 20px #ffd700; padding: 15px; 
-            background: rgba(0,0,0,0.3); border-radius: 15px;
-        }
-        #senderForm { display: block; }
-        #greeting { display: none; }
-        input { 
-            padding: 18px; font-size: 18px; border: 3px solid #ffd700; 
-            border-radius: 30px; width: 350px; max-width: 85vw; 
-            margin: 12px 0; text-align: center; background: rgba(255,255,255,0.1); 
-            color: white; font-weight: bold; transition: all 0.3s;
-        }
-        input::placeholder { color: rgba(255,255,255,0.7); }
-        input:focus { 
-            outline: none; box-shadow: 0 0 30px #ffd700; transform: scale(1.02);
-            background: rgba(255,255,255,0.2);
-        }
-        button { 
-            padding: 18px 40px; font-size: 18px; 
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ff1493);
-            color: #000; border: none; border-radius: 30px; cursor: pointer; 
-            margin: 15px; font-weight: bold; transition: all 0.4s;
-        }
-        button:hover { 
-            transform: scale(1.08) rotate(2deg); 
-            box-shadow: 0 15px 40px rgba(255,215,0,0.6); 
-        }
-        .share-section { 
-            background: rgba(0,0,0,0.6); padding: 25px; 
-            border-radius: 20px; margin: 25px 0; 
-            backdrop-filter: blur(10px); border: 2px solid #ffd700;
-            display: none;
-        }
-        .share-link { 
-            background: #25D366; color: white; padding: 12px 20px; 
-            text-decoration: none; border-radius: 25px; font-size: 16px;
-            display: inline-block; margin: 8px; font-weight: bold;
-            cursor: pointer; word-break: break-all;
-        }
-        .copy-btn { background: #4CAF50; padding: 12px 25px; }
-        #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .wish-display { 
-            font-size: clamp(1.5em, 5vw, 2.8em); 
-            margin: 35px 0; min-height: 180px; 
-            animation: celebrate 2s ease-in-out infinite; 
-            color: #ffed4e;
-        }
-        @keyframes celebrate {
-            0%,100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.05) rotate(2deg); }
-            75% { transform: scale(1.05) rotate(-2deg); }
-        }
-        .sender-name { 
-            color: #ff1493; font-size: 1.3em; 
-            text-shadow: 0 0 25px #ff1493; font-weight: bold; margin: 15px 0;
-        }
-        .forward-section {
-            margin-top: 35px; padding-top: 25px; 
-            border-top: 2px solid #ffd700; display: none;
-        }
-        @media (max-width: 600px) { 
-            input { width: 90vw; } 
-            button { padding: 15px 30px; font-size: 16px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Happy New Year 2026 Wisher 🎉</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:'Segoe UI',Tahoma,sans-serif;
+ background:linear-gradient(45deg,#000428,#004e92,#ff7e5f,#feb47b);
+ background-size:400% 400%;
+ animation:gradientShift 10s ease infinite;
+ color:white;
+ min-height:100vh;
+ overflow-x:hidden;
+ text-align:center;
+}
+@keyframes gradientShift{
+ 0%,100%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+}
+.container{max-width:600px;margin:auto;padding:20px}
+h1{
+ font-size:clamp(2.5em,8vw,4em);
+ margin:30px 0;
+ text-shadow:0 0 40px #ffd700;
+ animation:glow 2s infinite;
+}
+@keyframes glow{
+ 0%,100%{text-shadow:0 0 20px #ffd700}
+ 50%{text-shadow:0 0 40px #ffd700,0 0 60px #ff1493}
+}
+#countdown{
+ font-size:1.8em;
+ color:#ffd700;
+ margin:20px 0;
+ font-weight:bold;
+ text-shadow:0 0 20px #ffd700;
+ padding:15px;
+ background:rgba(0,0,0,0.3);
+ border-radius:15px
+}
+input{
+ padding:18px;
+ font-size:18px;
+ border:3px solid #ffd700;
+ border-radius:30px;
+ width:350px;
+ max-width:85vw;
+ margin:12px 0;
+ text-align:center;
+ background:rgba(255,255,255,0.1);
+ color:white;
+ font-weight:bold
+}
+input:focus{
+ outline:none;
+ box-shadow:0 0 25px #ffd700
+}
+button{
+ padding:18px 40px;
+ font-size:18px;
+ background:linear-gradient(45deg,#ffd700,#ffed4e,#ff1493);
+ color:#000;
+ border:none;
+ border-radius:30px;
+ cursor:pointer;
+ margin:15px;
+ font-weight:bold;
+ transition:0.3s
+}
+button:hover{
+ transform:scale(1.05)
+}
+.share-section{
+ background:rgba(0,0,0,0.6);
+ padding:25px;
+ border-radius:20px;
+ margin:25px 0;
+ display:none
+}
+.share-link{
+ background:#25D366;
+ color:white;
+ padding:12px 20px;
+ text-decoration:none;
+ border-radius:25px;
+ display:inline-block;
+ margin:8px;
+ font-weight:bold;
+ cursor:pointer;
+ word-break:break-all
+}
+#wish{font-size:2em;margin:30px 0;color:#ffed4e}
+#sender{color:#ff1493;font-size:1.2em}
+canvas{
+ position:fixed;
+ top:0;left:0;
+ width:100%;height:100%;
+ z-index:-1
+}
+</style>
 </head>
+
 <body>
-    <canvas id="fireworksCanvas"></canvas>
-    <div class="container">
-        <h1>🎉 Happy New Year 2026! 🎊</h1>
-        <div id="countdown">
-            <span id="days">0</span>d : <span id="hours">0</span>h : <span id="minutes">0</span>m : <span id="seconds">0</span>s
-        </div>
-        <div id="senderForm">
-            <input id="senderName" placeholder="👤 Apna naam likho..." maxlength="30" required>
-            <button onclick="generateLink()">🚀 Magic Link Banao & Share Karo!</button>
-        </div>
-        <div id="shareSection" class="share-section">
-            <h2 style="margin-bottom: 15px; color: #ffd700;">✨ Yeh Link Copy Karo:</h2>
-            <div id="shareLink" class="share-link" onclick="copyLink()"></div>
-            <br>
-            <a id="whatsappBtn" class="share-link" style="background: #25D366;">📱 WhatsApp Pe Bhejo</a>
-            <button class="copy-btn" onclick="copyLink()">📋 Copy Link</button>
-        </div>
-        <div id="greeting">
-            <div class="wish-display" id="randomWish"></div>
-            <div class="sender-name" id="senderDisplay"></div>
-            <button onclick="generateNewWish()">🔄 Naya Wish Dekho</button>
-            <div class="forward-section" id="forwardSection">
-                <h3 style="margin-bottom: 15px;">🔗 Chain Ko Aage Badha! 🔗</h3>
-                <input id="nextSenderName" placeholder="👤 Tera naam likho..." maxlength="30">
-                <button onclick="passToNext()">✨ Apna Link Banao & Bhejo!</button>
-            </div>
-        </div>
-    </div>
-    <script>
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        function playTone(frequency, duration, type = 'sine', volume = 0.3) {
-            try {
-                const osc = audioContext.createOscillator();
-                const gain = audioContext.createGain();
-                osc.connect(gain);
-                gain.connect(audioContext.destination);
-                osc.type = type;
-                osc.frequency.value = frequency;
-                gain.gain.setValueAtTime(volume, audioContext.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-                osc.start(audioContext.currentTime);
-                osc.stop(audioContext.currentTime + duration);
-            } catch(e) {}
-        }
-        function playSuccessSound() {
-            playTone(400, 0.1);
-            setTimeout(() => playTone(600, 0.1), 100);
-            setTimeout(() => playTone(800, 0.2), 200);
-        }
-        function playFireworksSound() {
-            playTone(200 + Math.random()*400, 0.15, 'square', 0.2);
-        }
-        let musicInterval = null;
-        function playBackgroundMusic() {
-            const melody = [
-                {freq: 392.00, dur: 200}, {freq: 392.00, dur: 200}, {freq: 392.00, dur: 400},
-                {freq: 392.00, dur: 200}, {freq: 392.00, dur: 200}, {freq: 392.00, dur: 600},
-                {freq: 392.00, dur: 200}, {freq: 493.88, dur: 200}, {freq: 349.23, dur: 400},
-                {freq: 349.23, dur: 200}, {freq: 349.23, dur: 200}, {freq: 349.23, dur: 600},
-                {freq: 523.25, dur: 300}, {freq: 523.25, dur: 300}, {freq: 523.25, dur: 300},
-            ];
-            let index = 0;
-            if (musicInterval) clearInterval(musicInterval);
-            function playMelody() {
-                if (index >= melody.length) index = 0;
-                const note = melody[index];
-                playTone(note.freq, note.dur / 1000, 'sine', 0.35);
-                index++;
-                musicInterval = setTimeout(playMelody, note.dur);
-            }
-            playMelody();
-        }
-        let wishes = JSON.parse(localStorage.getItem('wishes')) || [];
-        let currentWishId = null;
-        const randomWishes = [
-            "नया साल मुबारक हो! नई उम्मीदें, नई खुशियाँ लाए!",
-            "Happy New Year! नया साल आपकी जिंदगी को रंगीन बनाए!",
-            "शुभ नय वर्ष! सफलता और समृद्धि की बधाई!",
-            "नया साल नई शुरुआत! ढेर सारी खुशियाँ!",
-            "🎉 2026 आपका सबसे शानदार साल बने!",
-            "नया साल खुशियों भरा हो! नई ऊँचाइयों को छुओ!",
-            "Happy New Year! सपने सच हों, इच्छाएँ पूरी हों!",
-            "शुभकामनाएँ! नया साल धमाकेदार हो!",
-            "नया साल आपकी जिंदगी में खुशियों की बौछार करे!",
-            "2026 आपका साल है! जीत का जश्न मनाओ!"
-        ];
-        function startCountdown() {
-            function update() {
-                const newYear = new Date(2026, 0, 1).getTime();
-                const now = new Date().getTime();
-                const diff = newYear - now;
-                document.getElementById('days').textContent = Math.floor(diff / (1000*60*60*24));
-                document.getElementById('hours').textContent = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-                document.getElementById('minutes').textContent = Math.floor((diff % (1000*60*60)) / (1000*60));
-                document.getElementById('seconds').textContent = Math.floor((diff % (1000*60)) / 1000);
-            }
-            update();
-            setInterval(update, 1000);
-        }
-        startCountdown();
-        playBackgroundMusic();
-        document.addEventListener('click', () => {
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-                playBackgroundMusic();
-            }
-        });
-        setTimeout(() => {
-            function repeatMusic() {
-                playBackgroundMusic();
-                setTimeout(repeatMusic, 12000);
-            }
-            repeatMusic();
-        }, 10000);
-        const canvas = document.getElementById('fireworksCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        let particles = [];
-        function createFirework(x, y) {
-            playFireworksSound();
-            for(let i = 0; i < 40; i++) {
-                particles.push({
-                    x: x || Math.random() * canvas.width,
-                    y: y || Math.random() * canvas.height * 0.6,
-                    vx: (Math.random() - 0.5) * 15,
-                    vy: (Math.random() - 0.5) * 15,
-                    color: `hsl(${20 + Math.random()*60}, 100%, ${50 + Math.random()*30}%)`,
-                    life: 120,
-                    maxLife: 120
-                });
-            }
-        }
-        function animateFireworks() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles = particles.filter(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vy += 0.15;
-                p.life--;
-                const alpha = p.life / p.maxLife;
-                ctx.save();
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 5 * alpha, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                return p.life > 0;
-            });
-            requestAnimationFrame(animateFireworks);
-        }
-        animateFireworks();
-        function generateUniqueId() {
-            return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-        }
-        function generateLink() {
-            const senderName = document.getElementById('senderName').value.trim();
-            if (!senderName) {
-                alert('👤 Pehle apna naam likho!');
-                return;
-            }
-            const uniqueId = generateUniqueId();
-            wishes.push({
-                id: uniqueId,
-                sender: senderName,
-                timestamp: new Date().toISOString(),
-                views: 0
-            });
-            localStorage.setItem('wishes', JSON.stringify(wishes));
-            playSuccessSound();
-            const shareUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(senderName)}&id=${uniqueId}`;
-            document.getElementById('shareLink').textContent = shareUrl;
-            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${encodeURIComponent(`${senderName} se Happy New Year wish! 🎉
-${shareUrl}`)}`;
-            document.getElementById('senderForm').style.display = 'none';
-            document.getElementById('shareSection').style.display = 'block';
-            createFirework(canvas.width / 2, canvas.height * 0.3);
-        }
-        function copyLink() {
-            const link = document.getElementById('shareLink').textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                const btn = event.target;
-                const original = btn.textContent;
-                btn.textContent = '✅ Copied!';
-                setTimeout(() => btn.textContent = original, 1500);
-            });
-        }
-        function getRandomWish() {
-            return randomWishes[Math.floor(Math.random() * randomWishes.length)];
-        }
-        function generateNewWish() {
-            document.getElementById('randomWish').textContent = getRandomWish();
-            playSuccessSound();
-            createFirework(canvas.width / 2, canvas.height * 0.4);
-        }
-        function passToNext() {
-            const nextName = document.getElementById('nextSenderName').value.trim();
-            if (!nextName) {
-                alert('👤 Apna naam likho!');
-                return;
-            }
-            const newId = generateUniqueId();
-            wishes.push({
-                id: newId,
-                sender: nextName,
-                timestamp: new Date().toISOString(),
-                views: 0
-            });
-            localStorage.setItem('wishes', JSON.stringify(wishes));
-            playSuccessSound();
-            const newUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(nextName)}&id=${newId}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(`${nextName} se Happy New Year! 🎉
-${newUrl}`)}`, '_blank');
-            document.getElementById('nextSenderName').value = '';
-            createFirework(canvas.width / 2, canvas.height * 0.3);
-        }
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('sender')) {
-            const senderName = urlParams.get('sender');
-            const wishId = urlParams.get('id');
-            currentWishId = wishId;
-            const wish = wishes.find(w => w.id === wishId);
-            if (wish) {
-                wish.views = (wish.views || 0) + 1;
-                localStorage.setItem('wishes', JSON.stringify(wishes));
-            }
-            document.getElementById('senderForm').style.display = 'none';
-            document.getElementById('shareSection').style.display = 'none';
-            document.getElementById('greeting').style.display = 'block';
-            document.getElementById('forwardSection').style.display = 'block';
-            document.getElementById('randomWish').textContent = getRandomWish();
-            document.getElementById('senderDisplay').textContent = `${senderName} के तरफ से ❤️`;
-            playBackgroundMusic();
-            setInterval(() => createFirework(), 1200);
-        }
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                if (document.getElementById('senderForm').style.display !== 'none') {
-                    generateLink();
-                } else if (document.getElementById('forwardSection').style.display !== 'none') {
-                    passToNext();
-                }
-            }
-        });
-    </script>
+
+<canvas id="fireworksCanvas"></canvas>
+
+<div class="container">
+<h1>🎉 Happy New Year 2026 🎊</h1>
+
+<div id="countdown">
+<span id="days">0</span>d :
+<span id="hours">0</span>h :
+<span id="minutes">0</span>m :
+<span id="seconds">0</span>s
+</div>
+
+<div id="form">
+<input id="name" placeholder="👤 Apna naam likho" maxlength="30">
+<br>
+<button onclick="makeLink()">🚀 Magic Link Banao</button>
+</div>
+
+<div class="share-section" id="share">
+<p>✨ Link Copy Karo:</p>
+<div id="link" class="share-link" onclick="copyLink()"></div>
+</div>
+
+<div id="wishBox" style="display:none">
+<div id="wish"></div>
+<div id="sender"></div>
+</div>
+</div>
+
+<script>
+/* ================= COUNTDOWN ================= */
+const ny = new Date(2026,0,1).getTime();
+setInterval(()=>{
+ const now = Date.now();
+ const d = ny - now;
+ days.innerText = Math.max(0,Math.floor(d/(1000*60*60*24)));
+ hours.innerText = Math.max(0,Math.floor(d%(1000*60*60*24)/(1000*60*60)));
+ minutes.innerText = Math.max(0,Math.floor(d%(1000*60*60)/(1000*60)));
+ seconds.innerText = Math.max(0,Math.floor(d%(1000*60)/1000));
+},1000);
+
+/* ================= LINK ================= */
+function makeLink(){
+ const n = name.value.trim();
+ if(n.length < 2){
+  alert("Please valid naam likho");
+  return;
+ }
+ const url = location.origin + location.pathname + "?from=" + encodeURIComponent(n);
+ link.innerText = url;
+ share.style.display = "block";
+}
+
+/* ================= COPY ================= */
+function copyLink(){
+ navigator.clipboard.writeText(link.innerText);
+ alert("Link copied!");
+}
+
+/* ================= WISH ================= */
+const wishes=[
+ "🎉 Naya saal mubarak ho!",
+ "✨ 2026 aapka best year ho!",
+ "🎊 Khushiyo se bhara saal!",
+ "🥳 Success aur happiness mile!",
+ "🌟 Dreams pure ho!",
+ "💖 Love & peace mile!"
+];
+
+const q = new URLSearchParams(location.search);
+if(q.has("from")){
+ form.style.display="none";
+ wishBox.style.display="block";
+ wish.innerText = wishes[Math.floor(Math.random()*wishes.length)];
+ sender.innerText = q.get("from") + " ki taraf se ❤️";
+}
+
+/* ================= IMPROVED FIREWORKS ================= */
+const canvas = document.getElementById("fireworksCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+ canvas.width = innerWidth;
+ canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+let particles=[];
+
+function fire(){
+ for(let i=0;i<40;i++){
+  particles.push({
+   x:Math.random()*canvas.width,
+   y:Math.random()*canvas.height*0.6,
+   vx:(Math.random()-0.5)*7,
+   vy:(Math.random()-0.5)*7,
+   life:100,
+   color:`hsl(${Math.random()*360},100%,60%)`
+  });
+ }
+}
+setInterval(fire,1200);
+
+function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ particles = particles.filter(p=>{
+  p.x+=p.vx;
+  p.y+=p.vy;
+  p.vy+=0.05;
+  p.life--;
+  ctx.globalAlpha = p.life/100;
+  ctx.fillStyle = p.color;
+  ctx.beginPath();
+  ctx.arc(p.x,p.y,3,0,Math.PI*2);
+  ctx.fill();
+  return p.life>0;
+ });
+ ctx.globalAlpha=1;
+ requestAnimationFrame(animate);
+}
+animate();
+</script>
+
 </body>
-    </html>
+</html>
