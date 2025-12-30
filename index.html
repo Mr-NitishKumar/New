@@ -22,7 +22,6 @@
         
         .container { max-width: 600px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
         
-        /* ✅ FIXED COUNTDOWN - Always Visible */
         #countdown { 
             position: fixed !important;
             top: 20px;
@@ -47,81 +46,31 @@
         #greeting, #shareSection, #forwardSection { display: none; }
         
         input { 
-            padding: 18px; 
-            font-size: 18px; 
-            border: 3px solid #ffd700; 
-            border-radius: 30px; 
-            width: 350px; 
-            max-width: 85vw; 
-            margin: 12px 0; 
-            text-align: center; 
-            background: rgba(255,255,255,0.1); 
-            color: white; 
-            font-weight: bold; 
+            padding: 18px; font-size: 18px; border: 3px solid #ffd700; border-radius: 30px; 
+            width: 350px; max-width: 85vw; margin: 12px 0; text-align: center; 
+            background: rgba(255,255,255,0.1); color: white; font-weight: bold; 
             transition: all 0.3s ease; 
         }
         input::placeholder { color: rgba(255,255,255,0.7); }
         input:focus { outline: none; box-shadow: 0 0 30px #ffd700; transform: scale(1.02); background: rgba(255,255,255,0.2); }
         
         button { 
-            padding: 18px 40px; 
-            font-size: 18px; 
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ff1493); 
-            color: #000; 
-            border: none; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            margin: 15px; 
-            font-weight: bold; 
-            transition: all 0.4s ease; 
+            padding: 18px 40px; font-size: 18px; 
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ff1493); color: #000; 
+            border: none; border-radius: 30px; cursor: pointer; margin: 15px; 
+            font-weight: bold; transition: all 0.4s ease; 
         }
         button:hover { transform: scale(1.08) rotate(2deg); box-shadow: 0 15px 40px rgba(255,215,0,0.6); }
         
-        .share-section { 
-            background: rgba(0,0,0,0.6); 
-            padding: 25px; 
-            border-radius: 20px; 
-            margin: 25px 0; 
-            backdrop-filter: blur(10px); 
-            border: 2px solid #ffd700; 
-        }
-        .share-link { 
-            background: #25D366; 
-            color: white; 
-            padding: 12px 20px; 
-            text-decoration: none; 
-            border-radius: 25px; 
-            font-size: 16px; 
-            display: inline-block; 
-            margin: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            word-break: break-all; 
-        }
+        .share-section { background: rgba(0,0,0,0.6); padding: 25px; border-radius: 20px; margin: 25px 0; backdrop-filter: blur(10px); border: 2px solid #ffd700; }
+        .share-link { background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 25px; font-size: 16px; display: inline-block; margin: 8px; font-weight: bold; cursor: pointer; word-break: break-all; }
         .copy-btn { background: #4CAF50; padding: 12px 25px; }
         
         #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .wish-display { font-size: clamp(1.5em, 5vw, 2.8em); margin: 35px 0; min-height: 180px; animation: celebrate 2s ease-in-out infinite; color: #ffed4e; }
+        .sender-name { color: #ff1493; font-size: 1.3em; text-shadow: 0 0 25px #ff1493; font-weight: bold; margin: 15px 0; }
         
-        .wish-display { 
-            font-size: clamp(1.5em, 5vw, 2.8em); 
-            margin: 35px 0; 
-            min-height: 180px; 
-            animation: celebrate 2s ease-in-out infinite; 
-            color: #ffed4e; 
-        }
-        .sender-name { 
-            color: #ff1493; 
-            font-size: 1.3em; 
-            text-shadow: 0 0 25px #ff1493; 
-            font-weight: bold; 
-            margin: 15px 0; 
-        }
-        
-        @media (max-width: 600px) { 
-            input { width: 90vw; } 
-            button { padding: 15px 30px; font-size: 16px; } 
-            #countdown { font-size: 1.4em; padding: 15px 20px; min-width: 240px; }
-        }
+        @media (max-width: 600px) { input { width: 90vw; } button { padding: 15px 30px; font-size: 16px; } #countdown { font-size: 1.4em; padding: 15px 20px; min-width: 240px; } }
     </style>
 </head>
 <body>
@@ -129,12 +78,8 @@
     <div class="container">
         <h1>🎉 Happy New Year 2026! 🎊</h1>
         
-        <!-- ✅ FIXED COUNTDOWN - Always Visible -->
         <div id="countdown">
-            <span id="days">00</span>d : 
-            <span id="hours">00</span>h : 
-            <span id="minutes">00</span>m : 
-            <span id="seconds">00</span>s
+            <span id="days">00</span>d : <span id="hours">00</span>h : <span id="minutes">00</span>m : <span id="seconds">00</span>s
         </div>
         
         <div id="senderForm">
@@ -145,7 +90,7 @@
         <div id="shareSection" class="share-section">
             <h2 style="margin-bottom: 15px; color: #ffd700;">✨ Yeh Link Copy Karo:</h2>
             <div id="shareLink" class="share-link" onclick="copyLink()"></div>
-            <br><a id="whatsappBtn" class="share-link" style="background: #25D366;">📱 WhatsApp Pe Bhejo</a>
+            <br><a id="whatsappBtn" class="share-link">📱 WhatsApp Pe Bhejo</a>
             <button class="copy-btn" onclick="copyLink()">📋 Copy Link</button>
         </div>
         
@@ -162,166 +107,96 @@
     </div>
 
     <script>
-        // 🎉 FESTIVE AUDIO MANAGER (Optimized)
-        class FestiveAudioManager {
-            constructor() {
-                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                this.masterGain = this.audioContext.createGain();
-                this.masterGain.connect(this.audioContext.destination);
-                this.masterGain.gain.value = 0.45;
-                this.isPlaying = false;
-                this.bassDrumInterval = null;
-            }
-
-            createFestiveChord(notes, duration, volume = 0.35, delay = 0) {
-                const now = this.audioContext.currentTime + delay;
-                notes.forEach((note, index) => {
-                    const osc = this.audioContext.createOscillator();
-                    const gain = this.audioContext.createGain();
-                    osc.connect(gain);
-                    gain.connect(this.masterGain);
-                    
-                    osc.type = index === 0 ? 'sawtooth' : 'sine';
-                    osc.frequency.value = note;
-                    
-                    gain.gain.setValueAtTime(0, now);
-                    gain.gain.linearRampToValueAtTime(volume * (1 - index * 0.1), now + 0.02);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + duration);
-                    
-                    osc.start(now);
-                    osc.stop(now + duration);
-                });
-            }
-
-            playBassDrum() {
-                const now = this.audioContext.currentTime;
-                const osc = this.audioContext.createOscillator();
-                const gain = this.audioContext.createGain();
+        // 🎵 Audio Manager
+        const audio = {
+            ctx: new (window.AudioContext || window.webkitAudioContext)(),
+            playSound(frequency, duration = 0.3, type = 'sine', volume = 0.3) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
                 osc.connect(gain);
-                gain.connect(this.masterGain);
-                osc.frequency.setValueAtTime(80, now);
-                osc.frequency.exponentialRampToValueAtTime(40, now + 0.1);
-                osc.type = 'square';
-                gain.gain.setValueAtTime(0.6, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-                osc.start(now);
-                osc.stop(now + 0.2);
+                gain.connect(this.ctx.destination);
+                osc.frequency.value = frequency;
+                osc.type = type;
+                gain.gain.setValueAtTime(0, this.ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(volume, this.ctx.currentTime + 0.01);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+                osc.start(this.ctx.currentTime);
+                osc.stop(this.ctx.currentTime + duration);
+            },
+            celebrate() {
+                this.playSound(523, 0.4, 'sawtooth');
+                setTimeout(() => this.playSound(659, 0.3), 50);
+                setTimeout(() => this.playSound(80, 0.2, 'square'), 100);
+            },
+            firework() {
+                this.playSound(800 + Math.random() * 400, 0.25);
             }
+        };
 
-            playCelebration() {
-                this.createFestiveChord([523.25, 659.25, 783.99], 0.4);
-                setTimeout(() => this.createFestiveChord([1046.5, 1318.5], 0.3, 0.25), 0.1);
-                setTimeout(() => this.playBassDrum(), 0.05);
-            }
-
-            playFireworkFestive() {
-                this.createFestiveChord([200 + Math.random()*800, 1000 + Math.random()*500], 0.25, 0.4);
-                setTimeout(() => this.createFestiveChord([880, 1108.73], 0.3, 0.2), 0.1);
-            }
-
-            playFestiveMelody() {
-                if (this.isPlaying) return;
-                this.isPlaying = true;
-                const melody = [
-                    [523.25, 659.25, 783.99], 0.3,
-                    [698.46, 880.00, 1046.50], 0.4,
-                    [523.25, 659.25, 783.99], 0.3,
-                    [392.00, 493.88, 587.33], 0.5,
-                    () => this.playBassDrum(),
-                    [783.99, 987.77, 1174.66], 0.6,
-                    [1046.50], 1.0
-                ];
-                let index = 0;
-                const playNext = () => {
-                    if (!this.isPlaying) return;
-                    const item = melody[index % melody.length];
-                    if (typeof item === 'function') item();
-                    else {
-                        const [notes, duration, vol] = Array.isArray(item) ? [...item, 0.35] : [item, 0.35];
-                        this.createFestiveChord(notes, duration, vol);
-                    }
-                    index++;
-                    setTimeout(playNext, 800);
-                };
-                playNext();
-                this.bassDrumInterval = setInterval(() => this.isPlaying && this.playBassDrum(), 1200);
-            }
-
-            stop() {
-                this.isPlaying = false;
-                if (this.bassDrumInterval) clearInterval(this.bassDrumInterval);
-            }
-
-            resume() {
-                if (this.audioContext.state === 'suspended') this.audioContext.resume();
-            }
-        }
-
-        // ✅ FIXED COUNTDOWN - India Timezone
+        // ✅ FIXED COUNTDOWN - 100% Working
         function startCountdown() {
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
             function update() {
-                const newYearIST = new Date('2026-01-01T00:00:00+05:30');
+                // IST Target: Jan 1, 2026 00:00:00
+                const target = new Date('2026-01-01T00:00:00+05:30');
                 const now = new Date();
-                let diff = newYearIST - now;
-
+                let diff = target - now;
+                
                 if (diff <= 0) {
-                    document.getElementById('countdown').innerHTML = "🎉 नया साल 2026 मुबारक! 🇮🇳";
+                    document.getElementById('countdown').innerHTML = "🎉 नया साल 2026 मुबारक हो! 🇮🇳";
                     return;
                 }
-
+                
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                
+                // ✅ SAFE UPDATE - No padStart errors
+                daysEl.textContent = days < 10 ? '0' + days : days;
+                hoursEl.textContent = hours < 10 ? '0' + hours : hours;
+                minutesEl.textContent = minutes < 10 ? '0' + minutes : minutes;
+                secondsEl.textContent = seconds < 10 ? '0' + seconds : seconds;
             }
-            update();
-            setInterval(update, 1000);
+            
+            update(); // First run
+            setInterval(update, 1000); // Every second
         }
 
-        // Fireworks System
+        // Fireworks
         const canvas = document.getElementById('fireworksCanvas');
         const ctx = canvas.getContext('2d');
-        function resizeCanvas() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
         let particles = [];
-        let fireworksInterval = null;
-
-        function createFirework(x, y) {
-            audio.playFireworkFestive();
+        
+        function createFirework(x = Math.random() * canvas.width, y = canvas.height * 0.6) {
+            audio.firework();
             for(let i = 0; i < 50; i++) {
                 particles.push({
-                    x: x || Math.random() * canvas.width,
-                    y: y || Math.random() * canvas.height * 0.6,
+                    x: x, y: y,
                     vx: (Math.random() - 0.5) * 18,
-                    vy: (Math.random() - 0.5) * 18,
-                    color: `hsl(${Math.random()*60}, 100%, ${60 + Math.random()*30}%)`,
+                    vy: (Math.random() - 0.5) * 18 - 5,
+                    color: `hsl(${Math.random()*60 + 300}, 100%, ${60 + Math.random()*30}%)`,
                     life: 140, maxLife: 140
                 });
             }
         }
-
+        
         function animateFireworks() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles = particles.filter(p => {
-                p.x += p.vx; 
-                p.y += p.vy; 
-                p.vy += 0.12; 
-                p.life--;
+                p.x += p.vx; p.y += p.vy; p.vy += 0.15; p.life--;
                 const alpha = p.life / p.maxLife;
                 ctx.save(); 
                 ctx.globalAlpha = alpha; 
                 ctx.fillStyle = p.color;
                 ctx.beginPath(); 
-                ctx.arc(p.x, p.y, 6 * alpha, 0, Math.PI * 2); 
+                ctx.arc(p.x, p.y, 5 * alpha, 0, Math.PI * 2); 
                 ctx.fill(); 
                 ctx.restore();
                 return p.life > 0;
@@ -329,10 +204,10 @@
             requestAnimationFrame(animateFireworks);
         }
         animateFireworks();
+        setInterval(createFirework, 3000);
 
-        // App State
+        // Wishes & State
         let wishes = JSON.parse(localStorage.getItem('wishes')) || [];
-        let currentWishId = null;
         const randomWishes = [
             "नया साल मुबारक हो! नई उम्मीदें, नई खुशियाँ लाए!",
             "Happy New Year! नया साल आपकी जिंदगी को रंगीन बनाए!",
@@ -346,99 +221,88 @@
             "2026 आपका साल है! जीत का जश्न मनाओ!"
         ];
 
-        function generateUniqueId() { 
-            return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); 
-        }
-        function getRandomWish() { 
-            return randomWishes[Math.floor(Math.random() * randomWishes.length)]; 
-        }
+        function generateUniqueId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+        function getRandomWish() { return randomWishes[Math.floor(Math.random() * randomWishes.length)]; }
 
         // Core Functions
         function generateLink() {
-            const senderName = document.getElementById('senderName').value.trim();
-            if (!senderName) { alert('👤 Pehle apna naam likho!'); return; }
+            const name = document.getElementById('senderName').value.trim();
+            if (!name) return alert('👤 नाम लिखो!');
             
-            const uniqueId = generateUniqueId();
-            wishes.push({id: uniqueId, sender: senderName, timestamp: new Date().toISOString(), views: 0});
+            const id = generateUniqueId();
+            wishes.push({id, sender: name, timestamp: new Date().toISOString(), views: 0});
             localStorage.setItem('wishes', JSON.stringify(wishes));
             
-            audio.playCelebration();
-            const shareUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(senderName)}&id=${uniqueId}`;
+            audio.celebrate();
+            const url = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(name)}&id=${id}`;
             
-            document.getElementById('shareLink').textContent = shareUrl;
-            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${encodeURIComponent(`${senderName} se Happy New Year wish! 🎉
-${shareUrl}`)}`;
+            document.getElementById('shareLink').textContent = url;
+            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${encodeURIComponent(`${name} se Happy New Year! 🎉
+${url}`)}`;
             
             document.getElementById('senderForm').style.display = 'none';
             document.getElementById('shareSection').style.display = 'block';
-            createFirework(canvas.width / 2, canvas.height * 0.3);
+            createFirework(canvas.width/2, canvas.height*0.3);
         }
 
         function copyLink() {
             const link = document.getElementById('shareLink').textContent;
             navigator.clipboard.writeText(link).then(() => {
                 const btn = event.target;
-                const original = btn.textContent;
+                const text = btn.textContent;
                 btn.textContent = '✅ Copied!';
-                audio.playCelebration();
-                setTimeout(() => btn.textContent = original, 1500);
+                audio.celebrate();
+                setTimeout(() => btn.textContent = text, 1500);
             });
         }
 
         function generateNewWish() {
             document.getElementById('randomWish').textContent = getRandomWish();
-            audio.playCelebration();
-            createFirework(canvas.width / 2, canvas.height * 0.4);
+            audio.celebrate();
+            createFirework(canvas.width/2, canvas.height*0.4);
         }
 
         function passToNext() {
-            const nextName = document.getElementById('nextSenderName').value.trim();
-            if (!nextName) { alert('👤 Apna naam likho!'); return; }
+            const name = document.getElementById('nextSenderName').value.trim();
+            if (!name) return alert('👤 नाम लिखो!');
             
-            const newId = generateUniqueId();
-            wishes.push({id: newId, sender: nextName, timestamp: new Date().toISOString(), views: 0});
+            const id = generateUniqueId();
+            wishes.push({id, sender: name, timestamp: new Date().toISOString(), views: 0});
             localStorage.setItem('wishes', JSON.stringify(wishes));
             
-            audio.playCelebration();
-            const newUrl = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(nextName)}&id=${newId}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(`${nextName} se Happy New Year! 🎉
-${newUrl}`)}`, '_blank');
+            audio.celebrate();
+            const url = `${window.location.href.split('?')[0]}?sender=${encodeURIComponent(name)}&id=${id}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(`${name} se Happy New Year! 🎉
+${url}`)}`);
             document.getElementById('nextSenderName').value = '';
-            createFirework(canvas.width / 2, canvas.height * 0.3);
+            createFirework(canvas.width/2, canvas.height*0.3);
         }
 
-        // ✅ FIXED URL HANDLING
-        const audio = new FestiveAudioManager();
+        // URL Check
         const urlParams = new URLSearchParams(window.location.search);
-        
         if (urlParams.has('sender')) {
-            // Personalized link opened
-            const senderName = decodeURIComponent(urlParams.get('sender'));
-            const wishId = urlParams.get('id');
-            currentWishId = wishId;
+            const sender = decodeURIComponent(urlParams.get('sender'));
+            const id = urlParams.get('id');
             
-            const wish = wishes.find(w => w.id === wishId);
-            if (wish) { 
-                wish.views = (wish.views || 0) + 1; 
-                localStorage.setItem('wishes', JSON.stringify(wishes)); 
+            const wish = wishes.find(w => w.id === id);
+            if (wish) {
+                wish.views++;
+                localStorage.setItem('wishes', JSON.stringify(wishes));
             }
             
-            // Show greeting view
             document.getElementById('senderForm').style.display = 'none';
-            document.getElementById('shareSection').style.display = 'none';
             document.getElementById('greeting').style.display = 'block';
             document.getElementById('forwardSection').style.display = 'block';
-            
             document.getElementById('randomWish').textContent = getRandomWish();
-            document.getElementById('senderDisplay').textContent = `${senderName} के तरफ से ❤️ Happy New Year!`;
+            document.getElementById('senderDisplay').textContent = `${sender} के तरफ से ❤️ Happy New Year!`;
             
-            audio.playFestiveMelody();
-            fireworksInterval = setInterval(() => createFirework(), 1200);
+            setInterval(createFirework, 1000);
         }
 
-        // Initialize
-        startCountdown();
-        document.addEventListener('click', () => audio.resume());
+        // START EVERYTHING
+        document.addEventListener('click', () => audio.ctx.resume());
+        startCountdown(); // 🔥 COUNTDOWN STARTS HERE
+        
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 if (document.getElementById('senderForm').style.display !== 'none') generateLink();
